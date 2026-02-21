@@ -18,6 +18,32 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content="HERAC - Association sportive regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale." />
     <link rel="icon" type="image/png" href={`${base}/logos/logo-herac.png`} />
     <title>{title}</title>
+    <!-- SEO Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://guillaumebeylouneh.github.io${base}/`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="HERAC — Association d'athlètes issus des forces de sécurité et de défense. Sport de haut niveau, valeurs militaires. HYROX, Spartan Race, CrossFit." />
+    <meta property="og:image" content={`https://guillaumebeylouneh.github.io${base}/og-image.jpg`} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="HERAC" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="HERAC — Association d'athlètes issus des forces de sécurité et de défense." />
+    <meta name="twitter:image" content={`https://guillaumebeylouneh.github.io${base}/og-image.jpg`} />
+    <!-- JSON-LD SportsOrganization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "HERAC",
+      "alternateName": "Héraclès Association Sportive",
+      "url": `https://guillaumebeylouneh.github.io${base}/`,
+      "logo": `https://guillaumebeylouneh.github.io${base}/logos/logo-herac.png`,
+      "description": "Association loi 1901 regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale.",
+      "email": "herac.officiel@gmail.com",
+      "sameAs": ["https://instagram.com/herac_officiel"],
+      "sport": ["HYROX", "Spartan Race", "Coaching sportif", "Secourisme"]
+    })} />
   </head>
   <body class="bg-herac-dark text-white">
     <Navbar />
