@@ -41,7 +41,7 @@
     <div class="bg-herac-dark p-8 border border-white/10">
       <h3 class="font-display text-xl text-white tracking-wide mb-6">ENVOYER UN MESSAGE</h3>
       <form
-        action="https://formspree.io/f/YOUR_FORM_ID"
+        action="https://formspree.io/f/xgolnzwo"
         method="POST"
         id="contact-form"
         class="space-y-4"
@@ -54,7 +54,8 @@
               id="name"
               name="name"
               required
-              class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-herac-red transition-colors"
+              autocomplete="name"
+              class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-herac-red transition-colors"
               placeholder="Votre nom"
             />
           </div>
@@ -65,7 +66,8 @@
               id="email"
               name="email"
               required
-              class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-herac-red transition-colors"
+              autocomplete="email"
+              class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-herac-red transition-colors"
               placeholder="votre@email.com"
             />
           </div>
@@ -76,7 +78,8 @@
             type="text"
             id="subject"
             name="subject"
-            class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-herac-red transition-colors"
+            autocomplete="off"
+            class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-herac-red transition-colors"
             placeholder="Partenariat, coaching, formation..."
           />
         </div>
@@ -87,13 +90,14 @@
             name="message"
             required
             rows="5"
-            class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-herac-red transition-colors resize-none"
+            class="w-full bg-herac-gray border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-herac-red transition-colors resize-none"
             placeholder="Votre message..."
           ></textarea>
         </div>
         <button
           type="submit"
-          class="w-full bg-herac-red text-white py-4 text-sm uppercase tracking-widest font-bold hover:bg-red-700 transition-colors"
+          id="submit-btn"
+          class="w-full bg-herac-red text-white py-4 text-sm uppercase tracking-widest font-bold hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           Envoyer
         </button>
@@ -106,10 +110,15 @@
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status');
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement | null;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!status) return;
+    if (!status || !btn) return;
+
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+
     const data = new FormData(form);
     try {
       const res = await fetch(form.action, {
@@ -126,9 +135,12 @@
         status.className = 'text-center text-sm text-red-400 mt-2';
       }
     } catch {
-      status.textContent = "Erreur réseau. Réessayez ou contactez-nous par email.";
+      status.textContent = 'Erreur réseau. Réessayez ou contactez-nous par email.';
       status.className = 'text-center text-sm text-red-400 mt-2';
     }
+
+    btn.textContent = 'Envoyer';
+    btn.disabled = false;
     status.classList.remove('hidden');
   });
 </script>
