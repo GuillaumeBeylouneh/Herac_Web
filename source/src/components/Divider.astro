@@ -1,0 +1,33 @@
+---
+interface Props {
+  from: 'dark' | 'gray' | 'red';
+  to: 'dark' | 'gray' | 'red';
+  flip?: boolean;
+}
+const { from, to, flip = false } = Astro.props;
+
+// Hex values from tailwind.config.mjs
+const colors: Record<string, string> = {
+  dark: '#0D0D0D',
+  gray: '#1A1A1A',
+  red:  '#C8102E',
+};
+
+const fromColor = colors[from];
+const toColor = colors[to];
+// flip=false: diagonal goes top-left to bottom-right (creates a bottom-right wedge)
+// flip=true: diagonal goes top-right to bottom-left
+const points = flip ? '0,0 1440,0 0,60' : '0,60 1440,0 1440,60';
+---
+
+<div style={`background-color: ${fromColor}; margin-bottom: -1px;`} aria-hidden="true">
+  <svg
+    viewBox="0 0 1440 60"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full block"
+    preserveAspectRatio="none"
+    style="height: 48px; display: block;"
+  >
+    <polygon points={points} fill={toColor} />
+  </svg>
+</div>
