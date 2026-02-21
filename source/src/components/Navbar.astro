@@ -1,0 +1,56 @@
+---
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: '#association', label: 'Association' },
+  { href: '#palmares', label: 'Palmarès' },
+  { href: '#equipe', label: 'Équipe' },
+  { href: '#services', label: 'Services' },
+  { href: '#sponsoring', label: 'Sponsoring' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-herac-dark/95 backdrop-blur-sm border-b border-herac-red/20">
+  <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+    <a href="#hero" class="flex items-center gap-3">
+      <img src={`${base}logos/logo-herac.png`} alt="HERAC" class="h-10 w-auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class="text-gray-300 hover:text-herac-red transition-colors uppercase tracking-wider text-xs">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a href="#contact" class="hidden md:block bg-herac-red text-white px-4 py-2 text-xs uppercase tracking-wider font-bold hover:bg-red-700 transition-colors">
+      Nous contacter
+    </a>
+    <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-herac-dark border-t border-herac-red/20">
+    <ul class="flex flex-col py-4">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class="block px-6 py-3 text-gray-300 hover:text-herac-red hover:bg-herac-gray transition-colors uppercase tracking-wider text-sm menu-close">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  document.querySelectorAll('.menu-close').forEach(el => {
+    el.addEventListener('click', () => menu?.classList.add('hidden'));
+  });
+</script>
