@@ -1,0 +1,56 @@
+---
+const stats = [
+  { value: 5, label: 'Médailles' },
+  { value: 3, label: 'Compétitions' },
+  { value: 2, label: 'Disciplines' },
+  { value: 1, label: 'Association' },
+];
+---
+
+<div id="statsbar" class="bg-herac-red py-8">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-red-700">
+      {stats.map(stat => (
+        <div class="text-center px-4 py-2">
+          <p
+            class="font-display text-4xl md:text-5xl text-white"
+            data-count={stat.value}
+          >0</p>
+          <p class="text-red-200 text-xs uppercase tracking-widest mt-1">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function animateCount(el: HTMLElement, target: number, duration = 1200) {
+    const startTime = performance.now();
+    function update(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const statsbar = document.getElementById('statsbar');
+  if (statsbar) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            statsbar.querySelectorAll<HTMLElement>('[data-count]').forEach(el => {
+              animateCount(el, parseInt(el.dataset.count!));
+            });
+            observer.unobserve(statsbar);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(statsbar);
+  }
+</script>
