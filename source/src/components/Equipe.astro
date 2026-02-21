@@ -39,6 +39,7 @@ const members = [
                 alt={member.name}
                 class={`w-full h-full object-cover ${member.objectPosition} group-hover:scale-105 transition-transform duration-500`}
                 loading="lazy"
+                decoding="async"
               />
             ) : (
               <div class="w-full h-full bg-herac-dark flex items-center justify-center">
