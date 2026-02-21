@@ -62,33 +62,19 @@ const competitionColors: Record<string, string> = {
       <div class="w-16 h-1 bg-herac-red mt-4"></div>
     </div>
 
-    <!-- Compteurs animés + photo trophée -->
-    <div class="grid md:grid-cols-2 gap-8 mb-12 items-center">
-      <div id="palmares-counters" class="grid grid-cols-3 gap-4">
-        <div class="text-center">
-          <p class="font-display text-5xl text-yellow-400" data-count="3">0</p>
-          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Or</p>
-        </div>
-        <div class="text-center">
-          <p class="font-display text-5xl text-gray-300" data-count="2">0</p>
-          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Argent</p>
-        </div>
-        <div class="text-center">
-          <p class="font-display text-5xl text-orange-400" data-count="1">0</p>
-          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Bronze</p>
-        </div>
+    <!-- Compteurs animés -->
+    <div id="palmares-counters" class="grid grid-cols-3 gap-4 mb-12 max-w-sm mx-auto">
+      <div class="text-center">
+        <p class="font-display text-5xl text-yellow-400" data-count="3">0</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Or</p>
       </div>
-
-      <div class="relative h-64 overflow-hidden group">
-        <img
-          src={`${base}/photos/lucie-trophee.jpg`}
-          alt="Lucie BEYLOUNEH — Palmarès HERAC"
-          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-herac-gray/80 to-transparent"></div>
-        <p class="absolute bottom-4 left-4 text-white text-xs uppercase tracking-widest font-bold">Lucie BEYLOUNEH</p>
+      <div class="text-center">
+        <p class="font-display text-5xl text-gray-300" data-count="2">0</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Argent</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl text-orange-400" data-count="1">0</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Bronze</p>
       </div>
     </div>
 
