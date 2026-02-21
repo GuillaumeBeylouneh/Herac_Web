@@ -22,13 +22,14 @@ const photos = [
       <div class="w-16 h-1 bg-herac-red mt-4"></div>
     </div>
 
-    <div class="columns-1 sm:columns-2 md:columns-3 gap-4">
+    <!-- Mobile : grille 2 colonnes uniformes (pas de layout éditorial complexe) -->
+    <div class="grid grid-cols-2 gap-2 sm:hidden">
       {photos.map(photo => (
-        <div class="break-inside-avoid group relative overflow-hidden mb-4">
+        <div class="aspect-[4/3] group relative overflow-hidden">
           <img
             src={photo.src}
             alt={photo.alt}
-            class="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
             decoding="async"
           />
@@ -37,7 +38,61 @@ const photos = [
       ))}
     </div>
 
-    <!-- CTA Instagram — honnête, pas de faux liens sur photos -->
+    <!-- Desktop : layout éditorial (sm+) -->
+    <div class="hidden sm:block space-y-2">
+
+      <!-- Bloc principal : 4 petites (gauche 2/3) + 1 grande (droite 1/3) -->
+      <div class="grid grid-cols-3 gap-2">
+
+        <!-- Gauche col-span-2 : 2×2 petites photos -->
+        <div class="col-span-2 grid grid-cols-2 gap-2">
+          {photos.slice(0, 4).map(photo => (
+            <div class="aspect-[4/3] group relative overflow-hidden">
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+            </div>
+          ))}
+        </div>
+
+        <!-- Droite col-span-1 : grande photo, hauteur = bloc gauche (CSS grid stretch) -->
+        <div class="col-span-1 relative overflow-hidden group">
+          <img
+            src={photos[4].src}
+            alt={photos[4].alt}
+            class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+        </div>
+
+      </div>
+
+      <!-- Rangée basse : 4 photos égales -->
+      <div class="grid grid-cols-4 gap-2">
+        {photos.slice(5).map(photo => (
+          <div class="aspect-[4/3] group relative overflow-hidden">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+    <!-- CTA Instagram — inchangé -->
     <div class="mt-16 border-t border-white/10 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div>
         <p class="text-gray-400 text-sm mb-1">Retrouvez toutes nos photos et vidéos de compétition sur Instagram.</p>
