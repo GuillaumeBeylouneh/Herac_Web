@@ -17,6 +17,8 @@ const base = import.meta.env.BASE_URL;
     <!-- Preload polices auto-hébergées -->
     <link rel="preload" href={`${base}/fonts/BebasNeue-Regular.woff2`} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={`${base}/fonts/Inter-400.woff2`} as="font" type="font/woff2" crossorigin />
+    <!-- Preload image hero pour LCP -->
+    <link rel="preload" href={`${base}/photos/hero-action.jpg`} as="image" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HERAC - Association sportive regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale." />
     <link rel="icon" type="image/png" href={`${base}/logos/logo-herac.png`} />
