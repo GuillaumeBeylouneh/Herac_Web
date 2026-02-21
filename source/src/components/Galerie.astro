@@ -1,0 +1,41 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const photos = [
+  { src: `${base}/photos/galerie-01.jpg`, alt: 'Lucie — Spartan Race', caption: 'Spartan Race' },
+  { src: `${base}/photos/galerie-02.jpg`, alt: 'Julien — HYROX', caption: 'HYROX' },
+  { src: `${base}/photos/galerie-03.jpg`, alt: 'Lucie & Julien — HYROX', caption: 'Équipe HYROX' },
+  { src: `${base}/photos/galerie-04.jpg`, alt: 'Julien — Deadlift', caption: 'Préparation' },
+  { src: `${base}/photos/galerie-05.jpg`, alt: 'Julien — Effort', caption: 'En compétition' },
+  { src: `${base}/photos/galerie-06.jpg`, alt: 'Julien — SkiErg', caption: 'HYROX SkiErg' },
+  { src: `${base}/photos/galerie-07.jpg`, alt: 'Julien — Exercice', caption: 'Entraînement' },
+  { src: `${base}/photos/galerie-08.jpg`, alt: 'Lucie — HYROX Sandbag', caption: 'HYROX Sandbag' },
+  { src: `${base}/photos/galerie-09.jpg`, alt: 'Lucie — HYROX', caption: 'HYROX' },
+];
+---
+
+<section id="galerie" class="py-24 bg-herac-dark">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mb-16">
+      <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-3">Sur le terrain</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white tracking-wide">GALERIE</h2>
+      <div class="w-16 h-1 bg-herac-red mt-4"></div>
+    </div>
+
+    <div class="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
+      {photos.map(photo => (
+        <div class="break-inside-avoid group relative overflow-hidden">
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <p class="text-white text-sm font-medium uppercase tracking-widest">{photo.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
