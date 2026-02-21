@@ -3,13 +3,12 @@ const stats = [
   { value: 5, label: 'Médailles' },
   { value: 3, label: 'Compétitions' },
   { value: 2, label: 'Disciplines' },
-  { value: 1, label: 'Association' },
 ];
 ---
 
 <div id="statsbar" class="bg-herac-red py-8">
   <div class="max-w-4xl mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-red-700">
+    <div class="grid grid-cols-3 gap-0 divide-x divide-red-700">
       {stats.map(stat => (
         <div class="text-center px-4 py-2">
           <p
