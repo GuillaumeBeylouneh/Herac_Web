@@ -6,6 +6,7 @@ const members = [
     name: 'Julien CHEVALIER',
     role: 'Président',
     photo: `${base}/photos/julien-portrait.jpg`,
+    objectPosition: 'object-top',
     tags: ['Officier de police nationale', 'Sapeur-pompier volontaire', '25 ans de coaching sportif'],
     services: 'Coaching sportif : préparation physique, renforcement, dépassement de soi',
   },
@@ -13,6 +14,7 @@ const members = [
     name: 'Lucie BEYLOUNEH',
     role: 'Trésorière',
     photo: `${base}/photos/lucie-portrait.jpg`,
+    objectPosition: 'object-center',
     tags: ['Officier de police nationale', 'Réserviste Armée de Terre (caporale-chef, chef de groupe)', 'Diplômée PSC1, SC1, PSE-1 et PSE-2'],
     services: 'Formatrice secourisme : PSC1, SC1, PSE-1, PSE-2',
   },
@@ -35,7 +37,7 @@ const members = [
               <img
                 src={member.photo}
                 alt={member.name}
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                class={`w-full h-full object-cover ${member.objectPosition} group-hover:scale-105 transition-transform duration-500`}
                 loading="lazy"
               />
             ) : (
