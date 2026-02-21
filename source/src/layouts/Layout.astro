@@ -4,50 +4,98 @@ import Navbar from '../components/Navbar.astro';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "HERAC - L'excellence physique au service de l'engagement" } = Astro.props;
+const {
+  title = "HERAC - L'excellence physique au service de l'engagement",
+  description = "HERAC - Association sportive regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale. HYROX, Spartan Race, coaching, secourisme.",
+} = Astro.props;
+
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://guillaumebeylouneh.github.io';
+const canonicalURL = `${siteUrl}${base}/`;
 ---
 
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <!-- Preload polices auto-hébergées -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO de base -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content="#C8102E" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href={`${base}/logos/logo-herac.png`} />
+
+    <!-- Préchargement polices -->
     <link rel="preload" href={`${base}/fonts/BebasNeue-Regular.woff2`} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={`${base}/fonts/Inter-400.woff2`} as="font" type="font/woff2" crossorigin />
-    <!-- Preload image hero pour LCP -->
+    <link rel="preload" href={`${base}/fonts/Inter-500.woff2`} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={`${base}/fonts/Inter-600.woff2`} as="font" type="font/woff2" crossorigin />
+
+    <!-- Préchargement LCP -->
     <link rel="preload" href={`${base}/photos/hero-action.jpg`} as="image" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="HERAC - Association sportive regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale." />
-    <link rel="icon" type="image/png" href={`${base}/logos/logo-herac.png`} />
-    <title>{title}</title>
-    <!-- SEO Open Graph -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://guillaumebeylouneh.github.io${base}/`} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="HERAC — Association d'athlètes issus des forces de sécurité et de défense. Sport de haut niveau, valeurs militaires. HYROX, Spartan Race, CrossFit." />
-    <meta property="og:image" content={`https://guillaumebeylouneh.github.io${base}/og-image.jpg`} />
+    <meta property="og:image" content={`${siteUrl}${base}/og-image.jpg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="HERAC — Association sportive forces de sécurité" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="HERAC" />
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="HERAC — Association d'athlètes issus des forces de sécurité et de défense." />
-    <meta name="twitter:image" content={`https://guillaumebeylouneh.github.io${base}/og-image.jpg`} />
-    <!-- JSON-LD SportsOrganization -->
+    <meta name="twitter:image" content={`${siteUrl}${base}/og-image.jpg`} />
+
+    <!-- JSON-LD SportsOrganization enrichi -->
     <script type="application/ld+json" set:text={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SportsOrganization",
       "name": "HERAC",
       "alternateName": "Héraclès Association Sportive",
-      "url": `https://guillaumebeylouneh.github.io${base}/`,
-      "logo": `https://guillaumebeylouneh.github.io${base}/logos/logo-herac.png`,
-      "description": "Association loi 1901 regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale.",
+      "url": canonicalURL,
+      "logo": `${siteUrl}${base}/logos/logo-herac.png`,
+      "image": `${siteUrl}${base}/og-image.jpg`,
+      "description": "Association loi 1901 regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale. HYROX, Spartan Race, Coaching sportif, Secourisme.",
       "email": "herac.officiel@gmail.com",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      },
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Julien CHEVALIER",
+          "jobTitle": "Président, Coach sportif"
+        },
+        {
+          "@type": "Person",
+          "name": "Lucie BEYLOUNEH",
+          "jobTitle": "Trésorière, Formatrice secourisme"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "herac.officiel@gmail.com",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      },
       "sameAs": ["https://instagram.com/herac_officiel"],
-      "sport": ["HYROX", "Spartan Race", "Coaching sportif", "Secourisme"]
+      "sport": ["HYROX", "Spartan Race", "Coaching sportif", "Secourisme", "Laser Run"]
     })} />
   </head>
   <body class="bg-herac-dark text-white">
@@ -57,14 +105,18 @@ const base = import.meta.env.BASE_URL;
     </main>
     <footer class="bg-black py-8 text-center text-gray-500 text-sm">
       <p>© 2025 HERAC — Association loi 1901</p>
-      <p class="mt-1">herac.officiel@gmail.com</p>
+      <p class="mt-1">
+        <a href="mailto:herac.officiel@gmail.com" class="hover:text-gray-300 transition-colors">
+          herac.officiel@gmail.com
+        </a>
+      </p>
       <p class="mt-3 text-xs text-gray-600 max-w-2xl mx-auto px-4">
         <strong class="text-gray-500">Mentions légales</strong> — Éditeur&nbsp;: Association HERAC, France. Directeur de publication&nbsp;: Julien CHEVALIER.
         Hébergeur&nbsp;: GitHub, Inc. — 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.
         Ce site ne collecte aucune donnée personnelle et ne dépose aucun cookie.
       </p>
     </footer>
-    <!-- Back to top button -->
+    <!-- Bouton retour en haut -->
     <button
       id="back-to-top"
       aria-label="Retour en haut"
@@ -76,6 +128,8 @@ const base = import.meta.env.BASE_URL;
     </button>
     <script>
       const btn = document.getElementById('back-to-top');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
           btn?.classList.remove('opacity-0', 'pointer-events-none');
@@ -84,9 +138,10 @@ const base = import.meta.env.BASE_URL;
           btn?.classList.add('opacity-0', 'pointer-events-none');
           btn?.classList.remove('opacity-100');
         }
-      });
+      }, { passive: true });
+
       btn?.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
       });
     </script>
   </body>
