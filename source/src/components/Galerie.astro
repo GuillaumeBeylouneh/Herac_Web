@@ -2,15 +2,15 @@
 const base = import.meta.env.BASE_URL;
 
 const photos = [
-  { src: `${base}/photos/galerie-01.jpg`, alt: 'Lucie BEYLOUNEH — Spartan Race', caption: 'Lucie — Spartan Race' },
-  { src: `${base}/photos/galerie-02.jpg`, alt: 'Julien CHEVALIER — HYROX', caption: 'Julien — HYROX' },
-  { src: `${base}/photos/galerie-03.jpg`, alt: 'Lucie et Julien — HYROX ensemble', caption: 'Lucie & Julien — HYROX' },
-  { src: `${base}/photos/galerie-04.jpg`, alt: 'Julien CHEVALIER — Soulevé de terre', caption: 'Julien — Soulevé de terre' },
-  { src: `${base}/photos/galerie-05.jpg`, alt: 'Julien CHEVALIER — Effort en compétition', caption: 'Julien — En compétition' },
-  { src: `${base}/photos/galerie-06.jpg`, alt: 'Julien CHEVALIER — SkiErg HYROX', caption: 'Julien — SkiErg HYROX' },
-  { src: `${base}/photos/galerie-07.jpg`, alt: 'Julien CHEVALIER — Exercice fonctionnel', caption: 'Julien — Entraînement' },
-  { src: `${base}/photos/galerie-08.jpg`, alt: 'Lucie BEYLOUNEH — Sandbag HYROX', caption: 'Lucie — Sandbag HYROX' },
-  { src: `${base}/photos/galerie-09.jpg`, alt: 'Lucie BEYLOUNEH — HYROX en course', caption: 'Lucie — HYROX' },
+  { src: `${base}/photos/galerie-01.jpg`, alt: 'Lucie BEYLOUNEH — Spartan Race' },
+  { src: `${base}/photos/galerie-02.jpg`, alt: 'Julien CHEVALIER — HYROX' },
+  { src: `${base}/photos/galerie-03.jpg`, alt: 'Lucie et Julien — HYROX' },
+  { src: `${base}/photos/galerie-04.jpg`, alt: 'Julien CHEVALIER — Soulevé de terre' },
+  { src: `${base}/photos/galerie-05.jpg`, alt: 'Julien CHEVALIER — HYROX' },
+  { src: `${base}/photos/galerie-06.jpg`, alt: 'HERAC — HYROX Sandbag' },
+  { src: `${base}/photos/galerie-07.jpg`, alt: 'Julien CHEVALIER — HYROX' },
+  { src: `${base}/photos/galerie-08.jpg`, alt: 'Lucie BEYLOUNEH — HYROX Sandbag' },
+  { src: `${base}/photos/galerie-09.jpg`, alt: 'Lucie BEYLOUNEH — HYROX' },
 ];
 ---
 
@@ -32,9 +32,7 @@ const photos = [
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-            <p class="text-white text-sm font-medium uppercase tracking-widest">{photo.caption}</p>
-          </div>
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
         </div>
       ))}
     </div>
