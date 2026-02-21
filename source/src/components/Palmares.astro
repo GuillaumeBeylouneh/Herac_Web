@@ -1,34 +1,41 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const medals = [
   {
     color: 'or',
     event: 'Challenge DOLO(tte) — École Militaire',
     detail: 'Challenge femme + soulevé de terre mixte',
     athletes: 'Lucie (x2)',
+    competition: 'Militaire',
   },
   {
     color: 'or',
     event: 'Laser Run Police Nationale',
     detail: '1ère sur 26 en individuel',
     athletes: 'Lucie',
+    competition: 'Police',
   },
   {
     color: 'argent',
     event: 'HYROX Gendarmerie Nationale',
     detail: '2ème sur 28 équipes mixte',
     athletes: 'Lucie & Julien',
+    competition: 'HYROX',
   },
   {
     color: 'argent',
     event: 'HYROX Sapeurs-Pompiers Paris',
     detail: 'Équipes mixte',
     athletes: 'Lucie & Julien',
+    competition: 'HYROX',
   },
   {
     color: 'bronze',
     event: "Rox'PP Police Paris",
     detail: '3ème sur 34 équipes mixte',
     athletes: 'Lucie & Julien',
+    competition: "Rox'PP",
   },
 ];
 
@@ -37,6 +44,13 @@ const colorStyles: Record<string, MedalStyle> = {
   or:     { bg: 'bg-yellow-900/20', text: 'text-yellow-400', border: 'border-yellow-500/30', emoji: '🥇' },
   argent: { bg: 'bg-gray-700/20',   text: 'text-gray-300',   border: 'border-gray-400/30',   emoji: '🥈' },
   bronze: { bg: 'bg-orange-900/20', text: 'text-orange-400', border: 'border-orange-500/30', emoji: '🥉' },
+};
+
+const competitionColors: Record<string, string> = {
+  'HYROX':     'bg-blue-900/40 text-blue-300 border-blue-500/30',
+  "Rox'PP":    'bg-blue-900/40 text-blue-300 border-blue-500/30',
+  'Militaire': 'bg-green-900/40 text-green-300 border-green-500/30',
+  'Police':    'bg-indigo-900/40 text-indigo-300 border-indigo-500/30',
 };
 ---
 
@@ -48,30 +62,50 @@ const colorStyles: Record<string, MedalStyle> = {
       <div class="w-16 h-1 bg-herac-red mt-4"></div>
     </div>
 
-    <div class="grid grid-cols-3 gap-4 mb-12">
-      <div class="text-center">
-        <p class="font-display text-5xl text-yellow-400">3</p>
-        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Or</p>
+    <!-- Compteurs animés + photo trophée -->
+    <div class="grid md:grid-cols-2 gap-8 mb-12 items-center">
+      <div id="palmares-counters" class="grid grid-cols-3 gap-4">
+        <div class="text-center">
+          <p class="font-display text-5xl text-yellow-400" data-count="3">0</p>
+          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Or</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-5xl text-gray-300" data-count="2">0</p>
+          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Argent</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-5xl text-orange-400" data-count="1">0</p>
+          <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Bronze</p>
+        </div>
       </div>
-      <div class="text-center">
-        <p class="font-display text-5xl text-gray-300">2</p>
-        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Argent</p>
-      </div>
-      <div class="text-center">
-        <p class="font-display text-5xl text-orange-400">1</p>
-        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Bronze</p>
+
+      <div class="relative h-64 overflow-hidden group">
+        <img
+          src={`${base}/photos/lucie-trophee.jpg`}
+          alt="Lucie BEYLOUNEH — Palmarès HERAC"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-herac-gray/80 to-transparent"></div>
+        <p class="absolute bottom-4 left-4 text-white text-xs uppercase tracking-widest font-bold">Lucie BEYLOUNEH</p>
       </div>
     </div>
 
     <div class="space-y-4">
       {medals.map(medal => {
         const style = colorStyles[medal.color];
+        const compColor = competitionColors[medal.competition] ?? 'bg-gray-800 text-gray-400 border-gray-600/30';
         return (
-          <div class={`flex items-start gap-6 p-6 border ${style.border} ${style.bg}`}>
+          <div class={`flex items-start gap-4 p-6 border ${style.border} ${style.bg}`}>
             <span class="text-3xl flex-shrink-0">{style.emoji}</span>
-            <div class="flex-1">
-              <p class={`font-display text-xl tracking-wide ${style.text}`}>{medal.event}</p>
-              <p class="text-gray-400 text-sm mt-1">{medal.detail}</p>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <p class={`font-display text-xl tracking-wide ${style.text}`}>{medal.event}</p>
+                <span class={`text-xs px-2 py-0.5 border rounded-sm uppercase tracking-wider ${compColor}`}>
+                  {medal.competition}
+                </span>
+              </div>
+              <p class="text-gray-400 text-sm">{medal.detail}</p>
             </div>
             <p class="text-gray-500 text-sm flex-shrink-0">{medal.athletes}</p>
           </div>
@@ -80,3 +114,35 @@ const colorStyles: Record<string, MedalStyle> = {
     </div>
   </div>
 </section>
+
+<script>
+  function animateCount(el: HTMLElement, target: number, duration = 1200) {
+    const startTime = performance.now();
+    function update(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counters = document.getElementById('palmares-counters');
+  if (counters) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            counters.querySelectorAll<HTMLElement>('[data-count]').forEach(el => {
+              animateCount(el, parseInt(el.dataset.count!));
+            });
+            observer.unobserve(counters);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(counters);
+  }
+</script>
