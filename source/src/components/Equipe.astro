@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const members = [
+  {
+    name: 'Julien CHEVALIER',
+    role: 'Président',
+    photo: `${base}photos/photo-2.jpg`,
+    tags: ['Officier de police nationale', 'Sapeur-pompier volontaire', '25 ans de coaching sportif'],
+    services: 'Coaching sportif : préparation physique, renforcement, dépassement de soi',
+  },
+  {
+    name: 'Lucie BEYLOUNEH',
+    role: 'Trésorière',
+    photo: `${base}photos/lucie-medailles.jpg`,
+    tags: ['Officier de police nationale', 'Réserviste Armée de Terre (caporale-chef, chef de groupe)', 'Diplômée PSC1, SC1, PSE-1 et PSE-2'],
+    services: 'Formatrice secourisme : PSC1, SC1, PSE-1, PSE-2',
+  },
+];
+---
+
+<section id="equipe" class="py-24 bg-herac-dark">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mb-16">
+      <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-3">Les fondateurs</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white tracking-wide">L'ÉQUIPE</h2>
+      <div class="w-16 h-1 bg-herac-red mt-4"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {members.map(member => (
+        <div class="bg-herac-gray overflow-hidden group">
+          <div class="relative h-80 overflow-hidden">
+            <img
+              src={member.photo}
+              alt={member.name}
+              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-herac-gray to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <p class="text-herac-red text-xs uppercase tracking-widest mb-1">{member.role}</p>
+              <h3 class="font-display text-2xl text-white tracking-wide">{member.name}</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-2 mb-4">
+              {member.tags.map(tag => (
+                <li class="flex items-start gap-2 text-gray-400 text-sm">
+                  <span class="w-1.5 h-1.5 bg-herac-red mt-1.5 flex-shrink-0"></span>
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            <p class="text-gray-300 text-sm border-t border-white/10 pt-4">{member.services}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

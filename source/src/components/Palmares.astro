@@ -1,0 +1,82 @@
+---
+const medals = [
+  {
+    color: 'or',
+    event: 'Challenge DOLO(tte) — École Militaire',
+    detail: 'Challenge femme + soulevé de terre mixte',
+    athletes: 'Lucie (x2)',
+  },
+  {
+    color: 'or',
+    event: 'Laser Run Police Nationale',
+    detail: '1ère sur 26 en individuel',
+    athletes: 'Lucie',
+  },
+  {
+    color: 'argent',
+    event: 'HYROX Gendarmerie Nationale',
+    detail: '2ème sur 28 équipes mixte',
+    athletes: 'Lucie & Julien',
+  },
+  {
+    color: 'argent',
+    event: 'HYROX Sapeurs-Pompiers Paris',
+    detail: 'Équipes mixte',
+    athletes: 'Lucie & Julien',
+  },
+  {
+    color: 'bronze',
+    event: "Rox'PP Police Paris",
+    detail: '3ème sur 34 équipes mixte',
+    athletes: 'Lucie & Julien',
+  },
+];
+
+type MedalStyle = { bg: string; text: string; border: string; emoji: string };
+const colorStyles: Record<string, MedalStyle> = {
+  or:     { bg: 'bg-yellow-900/20', text: 'text-yellow-400', border: 'border-yellow-500/30', emoji: '🥇' },
+  argent: { bg: 'bg-gray-700/20',   text: 'text-gray-300',   border: 'border-gray-400/30',   emoji: '🥈' },
+  bronze: { bg: 'bg-orange-900/20', text: 'text-orange-400', border: 'border-orange-500/30', emoji: '🥉' },
+};
+---
+
+<section id="palmares" class="py-24 bg-herac-gray">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mb-16">
+      <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-3">Résultats</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white tracking-wide">PALMARÈS 2025</h2>
+      <div class="w-16 h-1 bg-herac-red mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 mb-12">
+      <div class="text-center">
+        <p class="font-display text-5xl text-yellow-400">3</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Or</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl text-gray-300">2</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Argent</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl text-orange-400">1</p>
+        <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Bronze</p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      {medals.map(medal => {
+        const style = colorStyles[medal.color];
+        return (
+          <div class={`flex items-start gap-6 p-6 border ${style.border} ${style.bg}`}>
+            <span class="text-3xl flex-shrink-0">{style.emoji}</span>
+            <div class="flex-1">
+              <p class={`font-display text-xl tracking-wide ${style.text}`}>{medal.event}</p>
+              <p class="text-gray-400 text-sm mt-1">{medal.detail}</p>
+            </div>
+            <p class="text-gray-500 text-sm flex-shrink-0">{medal.athletes}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

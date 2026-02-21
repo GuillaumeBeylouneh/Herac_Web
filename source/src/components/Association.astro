@@ -1,0 +1,45 @@
+<section id="association" class="py-24 bg-herac-dark">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mb-16">
+      <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-3">Qui sommes-nous</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white tracking-wide">L'ASSOCIATION</h2>
+      <div class="w-16 h-1 bg-herac-red mt-4"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-gray-300 text-lg leading-relaxed mb-6">
+          HERAC (Héraclès, saint patron des athlètes) est une association loi 1901 fondée par des
+          athlètes issus des forces de sécurité intérieure et de défense nationale.
+        </p>
+        <p class="text-gray-300 leading-relaxed mb-6">
+          Notre mission : soutenir des sportifs de haut niveau qui allient les exigences
+          de leur engagement professionnel à des performances compétitives d'exception.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+          Derrière chaque médaille se cache une discipline forgée dans l'uniforme,
+          une rigueur que peu connaissent.
+        </p>
+      </div>
+
+      <div class="bg-herac-gray p-8 border-l-4 border-herac-red">
+        <h3 class="font-display text-2xl text-white tracking-wide mb-6">NOS MEMBRES</h3>
+        <ul class="space-y-3">
+          {[
+            'Police nationale & municipale',
+            'Gendarmerie nationale',
+            'Armée de Terre, Air & Mer',
+            'Sapeurs-Pompiers',
+            'Douanes',
+            'Administration pénitentiaire',
+          ].map(item => (
+            <li class="flex items-center gap-3 text-gray-300">
+              <span class="w-2 h-2 bg-herac-red flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

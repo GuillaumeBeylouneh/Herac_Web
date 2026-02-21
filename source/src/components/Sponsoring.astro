@@ -1,0 +1,62 @@
+---
+const advantages = [
+  {
+    title: 'Visibilité compétition',
+    desc: 'Votre logo sur les tenues de Lucie et Julien lors de chaque compétition officielle.',
+    icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
+  },
+  {
+    title: 'Réseaux sociaux',
+    desc: 'Mentions régulières sur Instagram @herac_officiel avec vos visuels.',
+    icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14',
+  },
+  {
+    title: 'Médias & interviews',
+    desc: 'Mention de vos partenaires lors de nos interventions presse et médias.',
+    icon: 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z',
+  },
+  {
+    title: 'Avantage fiscal',
+    desc: "Le mécénat d'une association loi 1901 est déductible fiscalement pour l'entreprise.",
+    icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z',
+  },
+];
+---
+
+<section id="sponsoring" class="py-24 bg-herac-dark">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="mb-16">
+      <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-3">Partenariat</p>
+      <h2 class="font-display text-4xl md:text-6xl text-white tracking-wide">OFFRE SPONSOR</h2>
+      <div class="w-16 h-1 bg-herac-red mt-4"></div>
+      <p class="text-gray-400 mt-6 max-w-2xl">
+        Associez votre image à l'excellence sportive des forces de sécurité.
+        Un partenariat fort, authentique, porteur de valeurs.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {advantages.map(item => (
+        <div class="bg-herac-gray p-6 text-center">
+          <div class="w-12 h-12 bg-herac-red mx-auto flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+            </svg>
+          </div>
+          <h3 class="font-display text-lg text-white tracking-wide mb-2">{item.title}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href="mailto:herac.officiel@gmail.com?subject=Partenariat HERAC"
+        class="inline-block bg-herac-red text-white px-10 py-5 font-display text-xl tracking-widest hover:bg-red-700 transition-colors"
+      >
+        NOUS CONTACTER
+      </a>
+      <p class="text-gray-500 text-sm mt-4">herac.officiel@gmail.com</p>
+    </div>
+  </div>
+</section>
