@@ -5,7 +5,7 @@ const members = [
   {
     name: 'Julien CHEVALIER',
     role: 'Président',
-    photo: `${base}/photos/photo-2.jpg`,
+    photo: null,
     tags: ['Officier de police nationale', 'Sapeur-pompier volontaire', '25 ans de coaching sportif'],
     services: 'Coaching sportif : préparation physique, renforcement, dépassement de soi',
   },
@@ -31,11 +31,17 @@ const members = [
       {members.map(member => (
         <div class="bg-herac-gray overflow-hidden group">
           <div class="relative h-80 overflow-hidden">
-            <img
-              src={member.photo}
-              alt={member.name}
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-            />
+            {member.photo ? (
+              <img
+                src={member.photo}
+                alt={member.name}
+                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
+            ) : (
+              <div class="w-full h-full bg-herac-dark flex items-center justify-center">
+                <img src={`${base}/logos/logo-herac.png`} alt="HERAC" class="h-24 w-auto opacity-30" />
+              </div>
+            )}
             <div class="absolute inset-0 bg-gradient-to-t from-herac-gray to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6">
               <p class="text-herac-red text-xs uppercase tracking-widest mb-1">{member.role}</p>
