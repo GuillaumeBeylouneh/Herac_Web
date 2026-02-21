@@ -1,4 +1,6 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const advantages = [
   {
     title: 'Visibilité compétition',
@@ -57,6 +59,53 @@ const advantages = [
         NOUS CONTACTER
       </a>
       <p class="text-gray-500 text-sm mt-4">herac.officiel@gmail.com</p>
+    </div>
+
+    <!-- Bloc flyer téléchargeable -->
+    <div class="mt-16 border-t border-herac-red/20 pt-12">
+      <div class="mb-8">
+        <p class="text-herac-red text-xs uppercase tracking-widest font-bold mb-2">Documentation</p>
+        <h3 class="font-display text-2xl text-white tracking-wide">DOSSIER DE PARTENARIAT</h3>
+        <p class="text-gray-400 text-sm mt-2">Téléchargez notre flyer de présentation pour partager à vos équipes dirigeantes.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-2xl">
+        <a
+          href={`${base}/flyers/flyer-recto.jpg`}
+          download="HERAC-Partenariat-Recto.jpg"
+          class="group relative overflow-hidden border border-white/10 hover:border-herac-red/50 transition-colors"
+        >
+          <img
+            src={`${base}/flyers/flyer-recto.jpg`}
+            alt="Flyer HERAC — Recto"
+            class="w-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="text-white text-sm font-bold uppercase tracking-wider">Télécharger Recto</span>
+          </div>
+        </a>
+        <a
+          href={`${base}/flyers/flyer-verso.jpg`}
+          download="HERAC-Partenariat-Verso.jpg"
+          class="group relative overflow-hidden border border-white/10 hover:border-herac-red/50 transition-colors"
+        >
+          <img
+            src={`${base}/flyers/flyer-verso.jpg`}
+            alt="Flyer HERAC — Verso"
+            class="w-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="text-white text-sm font-bold uppercase tracking-wider">Télécharger Verso</span>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
