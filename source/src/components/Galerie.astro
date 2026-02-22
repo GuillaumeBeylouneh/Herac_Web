@@ -3,7 +3,6 @@ const base = import.meta.env.BASE_URL;
 
 const photos = [
   { src: `${base}/photos/lucie-trophee.jpg`, alt: 'Lucie BEYLOUNEH — Victoire en compétition militaire' },
-  { src: `${base}/photos/galerie-02.jpg`, alt: 'Julien CHEVALIER — HYROX' },
   { src: `${base}/photos/galerie-03.jpg`, alt: 'Lucie et Julien — HYROX' },
   { src: `${base}/photos/galerie-04.jpg`, alt: 'Julien CHEVALIER — Soulevé de terre' },
   { src: `${base}/photos/galerie-05.jpg`, alt: 'Julien CHEVALIER — HYROX' },
@@ -74,8 +73,8 @@ const photos = [
 
       </div>
 
-      <!-- Rangée basse : 4 photos égales -->
-      <div class="grid grid-cols-4 gap-2">
+      <!-- Rangée basse : 3 photos égales -->
+      <div class="grid grid-cols-3 gap-2">
         {photos.slice(5).map(photo => (
           <div class="aspect-[4/3] group relative overflow-hidden">
             <img
