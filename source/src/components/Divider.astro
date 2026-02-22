@@ -15,19 +15,16 @@ const colors: Record<string, string> = {
 
 const fromColor = colors[from];
 const toColor = colors[to];
-// flip=false: diagonal goes top-left to bottom-right (creates a bottom-right wedge)
-// flip=true: diagonal goes top-right to bottom-left
-const points = flip ? '0,0 1440,0 0,60' : '0,60 1440,0 1440,60';
+// flip=false: toColor fills bottom-right triangle (polygon: bottom-left, top-right, bottom-right)
+// flip=true:  toColor fills top-left triangle    (polygon: top-left, top-right, bottom-left)
+const clipPath = flip
+  ? 'polygon(0% 0%, 100% 0%, 0% 100%)'
+  : 'polygon(0% 100%, 100% 0%, 100% 100%)';
 ---
 
-<div style={`background-color: ${fromColor}; margin-bottom: -1px;`} aria-hidden="true">
-  <svg
-    viewBox="0 0 1440 60"
-    xmlns="http://www.w3.org/2000/svg"
-    class="w-full block"
-    preserveAspectRatio="none"
-    style="height: 48px; display: block;"
-  >
-    <polygon points={points} fill={toColor} />
-  </svg>
+<div
+  style={`position: relative; background-color: ${fromColor}; height: 48px; margin-bottom: -1px; overflow: hidden;`}
+  aria-hidden="true"
+>
+  <div style={`position: absolute; inset: 0; background-color: ${toColor}; clip-path: ${clipPath};`} />
 </div>

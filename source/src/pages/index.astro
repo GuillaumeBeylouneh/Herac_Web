@@ -9,16 +9,23 @@ import Equipe from '../components/Equipe.astro';
 import Services from '../components/Services.astro';
 import Sponsoring from '../components/Sponsoring.astro';
 import Contact from '../components/Contact.astro';
+import Divider from '../components/Divider.astro';
 ---
 
 <Layout>
   <Hero />
   <StatsBar />
+  <Divider from="red" to="dark" />
   <Association />
+  <Divider from="dark" to="gray" />
   <Palmares />
+  <Divider from="gray" to="dark" flip={true} />
   <Galerie />
   <Equipe />
+  <Divider from="dark" to="gray" />
   <Services />
+  <Divider from="gray" to="dark" flip={true} />
   <Sponsoring />
+  <Divider from="dark" to="gray" />
   <Contact />
 </Layout>
