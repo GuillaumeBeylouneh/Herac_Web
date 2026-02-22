@@ -18,7 +18,7 @@ const toColor = colors[to];
 // flip=false: toColor fills bottom-right triangle (polygon: bottom-left, top-right, bottom-right)
 // flip=true:  toColor fills top-left triangle    (polygon: top-left, top-right, bottom-left)
 const clipPath = flip
-  ? 'polygon(0% 0%, 100% 0%, 0% 100%)'
+  ? 'polygon(100% 0%, 100% 100%, 0% 100%)'
   : 'polygon(0% 100%, 100% 0%, 100% 100%)';
 ---
 
