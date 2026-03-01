@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://guillaumebeylouneh.github.io/Herac_Web/sitemap-index.xml
+Sitemap: https://herac.fr/sitemap-index.xml
