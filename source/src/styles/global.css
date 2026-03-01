@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/Herac_Web/fonts/BebasNeue-Regular.woff2') format('woff2');
+  src: url('/fonts/BebasNeue-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/Herac_Web/fonts/Inter-400.woff2') format('woff2');
+  src: url('/fonts/Inter-400.woff2') format('woff2');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/Herac_Web/fonts/Inter-500.woff2') format('woff2');
+  src: url('/fonts/Inter-500.woff2') format('woff2');
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/Herac_Web/fonts/Inter-600.woff2') format('woff2');
+  src: url('/fonts/Inter-600.woff2') format('woff2');
 }
 
 @tailwind base;
