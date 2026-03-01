@@ -12,9 +12,9 @@ const {
   description = "HERAC - Association sportive regroupant des athlètes issus des forces de sécurité intérieure et de défense nationale. HYROX, Spartan Race, coaching, secourisme.",
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
-const siteUrl = 'https://guillaumebeylouneh.github.io';
-const canonicalURL = `${siteUrl}${base}/`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = 'https://herac.fr';
+const canonicalURL = `${siteUrl}/`;
 ---
 
 <!doctype html>
